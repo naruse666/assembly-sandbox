@@ -2,10 +2,17 @@
 [nasm](https://www.nasm.us/)というアセンブラを使い、アセンブルする。
 ```nasm -f macho64 <file>```
 
-# MacOSX 64bitのsystemcall番号
+# systemcall
+[syscalls.master](https://github.com/apple/darwin-xnu/blob/main/bsd/kern/syscalls.master)
+
+### 番号
 [リンク](https://thexploit.com/secdev/mac-os-x-64-bit-assembly-system-calls/).  
 理屈は理解していないが、unixのシステムコール番号に`0×2000000`を足すみたい。  
 ```0x2000001 ; exitを呼べる。```
+
+# Linux systemcall リファレンス
+めっちゃ見やすいのあった。
+[yamnikov-oleg/calling_conventions.md](https://gist.github.com/yamnikov-oleg/454f48c3c45b735631f2)
 
 # アセンブリ基礎
 x86_64の。
@@ -253,3 +260,30 @@ mov eax, [rax + rdx]    ; eax = array[i]
 # 逆アセンブル
 バイナリからアセンブリへの変換。  
 `objdump -S <file>`とか使う。
+
+# variable
+### Allocating Storage Space for Initialized Data
+data section内。
+```
+Directive	  Purpose	           Storage Space
+DB	        Define Byte	       allocates 1 byte
+DW	        Define Word	       allocates 2 bytes
+DD	        Define Doubleword	 allocates 4 bytes
+DQ	        Define Quadword  	 allocates 8 bytes
+DT	        Define Ten Bytes	 allocates 10 bytes
+```
+
+### Allocating Storage Space for Uninitialized Data
+bss section内。
+```
+Directive	  Purpose
+RESB	      Reserve a Byte
+RESW	      Reserve a Word
+RESD	      Reserve a Doubleword
+RESQ	      Reserve a Quadword
+REST	      Reserve a Ten Bytes
+```
+
+### Multiple Initializations
+allocate `000000000`.
+```marks  TIMES  9  DW  0```

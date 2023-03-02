@@ -1,4 +1,4 @@
-filename = hello
+filename = recieve_input
 output_dir = ./output_files/
 out_path = $(output_dir)$(filename)
 # output_files にオブジェクトファイルをまとめてgitignoreする
