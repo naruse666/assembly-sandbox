@@ -16,5 +16,5 @@ _main:
 	syscall
 
 section .data
-  msg db 'hello, world!', 0x0a
+  msg db 'hello, world!', 0x0a    ; 0x0a = LF, 0x0d = CR
   len equ $ - msg

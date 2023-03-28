@@ -7,7 +7,7 @@
 
 ### 番号
 [リンク](https://thexploit.com/secdev/mac-os-x-64-bit-assembly-system-calls/).  
-理屈は理解していないが、unixのシステムコール番号に`0×2000000`を足すみたい。  
+unixのシステムコール番号に`0×2000000`を足すみたい。  恐らくカーネルコマンドのoffsetが`0×2000000`ってこと？
 ```0x2000001 ; exitを呼べる。```
 
 # Linux systemcall リファレンス
